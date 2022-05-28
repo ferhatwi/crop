@@ -148,18 +148,11 @@ class OverlayView (context: Context) : View(context) {
     }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
-        var left = left
-        var top = top
-        var right = right
-        var bottom = bottom
         super.onLayout(changed, left, top, right, bottom)
         if (changed) {
-            left = paddingLeft
-            top = paddingTop
-            right = width - paddingRight
-            bottom = height - paddingBottom
-            mThisWidth = right - left
-            mThisHeight = bottom - top
+            
+            mThisWidth = width - paddingRight - paddingLeft
+            mThisHeight = height - paddingBottom - paddingTop
             if (mShouldSetupCropBounds) {
                 mShouldSetupCropBounds = false
                 setTargetAspectRatio(mTargetAspectRatio)

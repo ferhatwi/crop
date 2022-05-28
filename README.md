@@ -1,7 +1,7 @@
 # Crop
 Crop for Android Jetpack Compose
 
-Modified library from [Yalantis/uCrop](https://github.com/Yalantis/uCrop).
+Modified from [Yalantis/uCrop](https://github.com/Yalantis/uCrop).
 
 Accepts bitmap, results bitmap.
 

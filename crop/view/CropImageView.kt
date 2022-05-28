@@ -5,8 +5,8 @@ import android.graphics.Bitmap
 import android.graphics.Matrix
 import android.graphics.RectF
 import androidx.annotation.IntRange
-import io.github.ferhatwi.cropcallback.CropBoundsChangeListener
-import io.github.ferhatwi.cropmodel.ImageState
+import io.github.ferhatwi.crop.callback.CropBoundsChangeListener
+import io.github.ferhatwi.crop.model.ImageState
 import io.github.ferhatwi.crop.util.CubicEasing
 import io.github.ferhatwi.crop.util.RectUtils
 import java.lang.ref.WeakReference

@@ -8,9 +8,9 @@ import androidx.annotation.ColorInt
 import androidx.annotation.IntDef
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
-import io.github.ferhatwi.cropcallback.OverlayViewChangeListener
-import io.github.ferhatwi.cropmodel.Frame
-import io.github.ferhatwi.cropmodel.Grid
+import io.github.ferhatwi.crop.callback.OverlayViewChangeListener
+import io.github.ferhatwi.crop.model.Frame
+import io.github.ferhatwi.crop.model.Grid
 import io.github.ferhatwi.crop.util.RectUtils
 
 class OverlayView (context: Context) : View(context) {

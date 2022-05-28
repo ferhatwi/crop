@@ -3,8 +3,8 @@ package io.github.ferhatwi.crop.view
 import android.content.Context
 import android.widget.FrameLayout
 import androidx.core.view.setPadding
-import io.github.ferhatwi.cropcallback.CropBoundsChangeListener
-import io.github.ferhatwi.cropcallback.OverlayViewChangeListener
+import io.github.ferhatwi.crop.callback.CropBoundsChangeListener
+import io.github.ferhatwi.crop.callback.OverlayViewChangeListener
 import io.github.ferhatwi.crop.util.toDp
 
 class CropView (context: Context) : FrameLayout(context) {

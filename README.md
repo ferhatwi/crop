@@ -16,7 +16,7 @@ AndroidView(
     factory = {
         CropView(it)
     },
-    modifier = Modifier.fillMaxSize(),
+    modifier = Modifier.fillMaxWidth().aspectRatio(0.8f),
     update = { view ->
         cropView = view
         view.cropImageView.setImageBitmap(BITMAP)
@@ -27,7 +27,7 @@ AndroidView(
 )
 
 Button(onClick = {
-    resultBitmap = cropView.cropImageView?.crop()
+    resultBitmap = cropView?.cropImageView?.crop()
 }) {
     Text(text = "Crop")
 }

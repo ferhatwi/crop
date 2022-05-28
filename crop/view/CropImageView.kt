@@ -43,10 +43,9 @@ open class CropImageView(context: Context) : TransformImageView(context) {
 
     /**
      * Cancels all current animations and sets image to fill crop area (without animation).
-     * Then creates and executes [BitmapCropTask] with proper parameters.
      */
 
-    fun cropX(): Bitmap? {
+    fun crop(): Bitmap? {
         var cropBitmap = viewBitmap
 
         if (cropBitmap == null) {

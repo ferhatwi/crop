@@ -1,6 +1,7 @@
 package io.github.ferhatwi.crop.view
 
 import android.content.Context
+import android.graphics.RectF
 import android.widget.FrameLayout
 import androidx.core.view.setPadding
 import io.github.ferhatwi.crop.callback.CropBoundsChangeListener
@@ -12,10 +13,16 @@ class CropView (context: Context) : FrameLayout(context) {
         private set
     val overlayView: OverlayView
     private fun setListenersToViews() {
-        cropImageView.cropBoundsChangeListener =
-            CropBoundsChangeListener { cropRatio -> overlayView.setTargetAspectRatio(cropRatio) }
-        overlayView.overlayViewChangeListener =
-            OverlayViewChangeListener { cropRect -> cropImageView.setCropRect(cropRect) }
+        cropImageView.cropBoundsChangeListener = object : CropBoundsChangeListener {
+            override fun onCropAspectRatioChanged(cropRatio: Float) {
+                overlayView.setTargetAspectRatio(cropRatio)
+            }
+        }
+        overlayView.overlayViewChangeListener = object : OverlayViewChangeListener {
+            override fun onCropRectUpdated(cropRect: RectF) {
+                cropImageView.setCropRect(cropRect)
+            }
+        }
     }
 
     override fun shouldDelayChildPressedState() = false

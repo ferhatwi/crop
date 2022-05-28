@@ -69,7 +69,7 @@ open class CropImageView(context: Context) : TransformImageView(context) {
                 if (cropWidth > mMaxResultImageSizeX || cropHeight > mMaxResultImageSizeY) {
                     val scaleX = mMaxResultImageSizeX / cropWidth
                     val scaleY = mMaxResultImageSizeY / cropHeight
-                    val resizeScale = Math.min(scaleX, scaleY)
+                    val resizeScale = min(scaleX, scaleY)
                     val resizedBitmap: Bitmap = Bitmap.createScaledBitmap(
                         cropBitmap,
                         (cropBitmap.width * resizeScale).roundToInt(),

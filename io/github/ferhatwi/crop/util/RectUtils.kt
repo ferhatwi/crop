@@ -1,6 +1,7 @@
 package io.github.ferhatwi.crop.util
 
 import android.graphics.RectF
+import kotlin.math.*
 
 object RectUtils {
     /**
@@ -39,16 +40,12 @@ object RectUtils {
      */
     fun getRectSidesFromCorners(corners: FloatArray): FloatArray {
         return floatArrayOf(
-            Math.sqrt(
-                Math.pow(
-                    (corners[0] - corners[2]).toDouble(),
-                    2.0
-                ) + Math.pow((corners[1] - corners[3]).toDouble(), 2.0)
-            ).toFloat(), Math.sqrt(
-                Math.pow(
-                    (corners[2] - corners[4]).toDouble(),
-                    2.0
-                ) + Math.pow((corners[3] - corners[5]).toDouble(), 2.0)
+            sqrt(
+                (corners[0] - corners[2]).toDouble().pow(2.0) + (corners[1] - corners[3]).toDouble()
+                    .pow(2.0)
+            ).toFloat(), sqrt(
+                (corners[2] - corners[4]).toDouble().pow(2.0) + (corners[3] - corners[5]).toDouble()
+                    .pow(2.0)
             ).toFloat()
         )
     }
@@ -73,12 +70,12 @@ object RectUtils {
         )
         var i = 1
         while (i < array.size) {
-            val x = Math.round(array[i - 1] * 10) / 10f
-            val y = Math.round(array[i] * 10) / 10f
-            r.left = Math.min(x, r.left)
-            r.top = Math.min(y, r.top)
-            r.right = Math.max(x, r.right)
-            r.bottom = Math.max(y, r.bottom)
+            val x = (array[i - 1] * 10).roundToLong() / 10f
+            val y = (array[i] * 10).roundToLong() / 10f
+            r.left = min(x, r.left)
+            r.top = min(y, r.top)
+            r.right = max(x, r.right)
+            r.bottom = max(y, r.bottom)
             i += 2
         }
         r.sort()

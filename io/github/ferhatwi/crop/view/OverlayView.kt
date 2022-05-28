@@ -12,6 +12,10 @@ import io.github.ferhatwi.crop.callback.OverlayViewChangeListener
 import io.github.ferhatwi.crop.model.Frame
 import io.github.ferhatwi.crop.model.Grid
 import io.github.ferhatwi.crop.util.RectUtils
+import kotlin.math.max
+import kotlin.math.min
+import kotlin.math.pow
+import kotlin.math.sqrt
 
 class OverlayView (context: Context) : View(context) {
     val cropViewRect = RectF()
@@ -143,23 +147,16 @@ class OverlayView (context: Context) : View(context) {
         mCircularPath.reset()
         mCircularPath.addCircle(
             cropViewRect.centerX(), cropViewRect.centerY(),
-            Math.min(cropViewRect.width(), cropViewRect.height()) / 2f, Path.Direction.CW
+            min(cropViewRect.width(), cropViewRect.height()) / 2f, Path.Direction.CW
         )
     }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
-        var left = left
-        var top = top
-        var right = right
-        var bottom = bottom
         super.onLayout(changed, left, top, right, bottom)
         if (changed) {
-            left = paddingLeft
-            top = paddingTop
-            right = width - paddingRight
-            bottom = height - paddingBottom
-            mThisWidth = right - left
-            mThisHeight = bottom - top
+
+            mThisWidth = width - paddingRight - paddingLeft
+            mThisHeight = height - paddingBottom - paddingTop
             if (mShouldSetupCropBounds) {
                 mShouldSetupCropBounds = false
                 setTargetAspectRatio(mTargetAspectRatio)
@@ -196,8 +193,8 @@ class OverlayView (context: Context) : View(context) {
         }
         if (event.action and MotionEvent.ACTION_MASK == MotionEvent.ACTION_MOVE) {
             if (event.pointerCount == 1 && mCurrentTouchCornerIndex != -1) {
-                x = Math.min(Math.max(x, paddingLeft.toFloat()), (width - paddingRight).toFloat())
-                y = Math.min(Math.max(y, paddingTop.toFloat()), (height - paddingBottom).toFloat())
+                x = min(max(x, paddingLeft.toFloat()), (width - paddingRight).toFloat())
+                y = min(max(y, paddingTop.toFloat()), (height - paddingBottom).toFloat())
                 updateCropViewRect(x, y)
                 mPreviousTouchX = x
                 mPreviousTouchY = y
@@ -265,9 +262,9 @@ class OverlayView (context: Context) : View(context) {
         var closestPointDistance = mTouchPointThreshold.toDouble()
         var i = 0
         while (i < 8) {
-            val distanceToCorner = Math.sqrt(
-                Math.pow((touchX - mCropGridCorners[i]).toDouble(), 2.0)
-                        + Math.pow((touchY - mCropGridCorners[i + 1]).toDouble(), 2.0)
+            val distanceToCorner = sqrt(
+                (touchX - mCropGridCorners[i]).toDouble().pow(2.0)
+                        + (touchY - mCropGridCorners[i + 1]).toDouble().pow(2.0)
             )
             if (distanceToCorner < closestPointDistance) {
                 closestPointDistance = distanceToCorner
@@ -317,7 +314,7 @@ class OverlayView (context: Context) : View(context) {
         if (mCircleDimmedLayer) { // Draw 1px stroke to fix antialias
             canvas.drawCircle(
                 cropViewRect.centerX(), cropViewRect.centerY(),
-                Math.min(cropViewRect.width(), cropViewRect.height()) / 2f, mDimmedStrokePaint
+                min(cropViewRect.width(), cropViewRect.height()) / 2f, mDimmedStrokePaint
             )
         }
     }

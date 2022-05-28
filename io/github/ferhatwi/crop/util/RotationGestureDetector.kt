@@ -1,6 +1,7 @@
 package io.github.ferhatwi.crop.util
 
 import android.view.MotionEvent
+import kotlin.math.atan2
 
 class RotationGestureDetector(private val mListener: OnRotationGestureListener?) {
     private var fX = 0f
@@ -61,9 +62,9 @@ class RotationGestureDetector(private val mListener: OnRotationGestureListener?)
     ): Float {
         return calculateAngleDelta(
             Math.toDegrees(
-                Math.atan2((fy1 - fy2).toDouble(), (fx1 - fx2).toDouble()).toFloat().toDouble()
+                atan2((fy1 - fy2).toDouble(), (fx1 - fx2).toDouble()).toFloat().toDouble()
             ).toFloat(), Math.toDegrees(
-                Math.atan2((sy1 - sy2).toDouble(), (sx1 - sx2).toDouble()).toFloat().toDouble()
+                atan2((sy1 - sy2).toDouble(), (sx1 - sx2).toDouble()).toFloat().toDouble()
             ).toFloat()
         )
     }

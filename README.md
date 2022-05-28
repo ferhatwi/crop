@@ -16,7 +16,7 @@ AndroidView(
     factory = {
         CropView(it)
     },
-    modifier = Modifier.fillMaxSize(),
+    modifier = Modifier.fillMaxWidth().aspectRatio(0.8f),
     update = { view ->
         cropView = view
         view.cropImageView.setImageBitmap(BITMAP)

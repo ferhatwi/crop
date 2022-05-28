@@ -27,7 +27,7 @@ AndroidView(
 )
 
 Button(onClick = {
-    resultBitmap = cropView.cropImageView?.crop()
+    resultBitmap = cropView?.cropImageView?.crop()
 }) {
     Text(text = "Crop")
 }
